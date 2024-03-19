@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <limits.h>
 
 #define N 4 // Number of cities
 
@@ -9,41 +10,47 @@ int graph[N][N] = {
     {20, 25, 30, 0}
 };
 
-int min(int a, int b) {
-    return (a < b) ? a : b;
-}
+int visited[N] = {0}; // To keep track of visited cities
 
-void swap(int *a, int *b) {
-    int temp = *a;
-    *a = *b;
-    *b = temp;
-}
+int minDistance(int dist[], int n) {
+    int minIndex, minDist = INT_MAX;
 
-void permute(int cities[], int start, int n, int *minCost) {
-    if (start == n - 1) {
-        int cost = 0;
-        for (int i = 0; i < n - 1; i++) {
-            cost += graph[cities[i]][cities[i + 1]];
+    // Loop through all cities
+    for (int i = 0; i < n; i++) {
+        // Check if the city 'i' is unvisited and its distance is smaller than the current minimum distance
+        if (!visited[i] && dist[i] < minDist) {
+            // Update the minimum distance and the index of the nearest unvisited city
+            minDist = dist[i];
+            minIndex = i;
         }
-        cost += graph[cities[n - 1]][cities[0]]; // Return to starting city
-        *minCost = min(*minCost, cost);
-        return;
+    }
+    // Return the index of the nearest unvisited city
+    return minIndex;
+}
+
+
+int tspNearestNeighbor(int start) {
+    int currentCity = start;
+    int tourLength = 0;
+
+    for (int i = 0; i < N - 1; i++) {
+        visited[currentCity] = 1; // Mark current city as visited
+        int nearestNeighbor = minDistance(graph[currentCity], N); // Find nearest unvisited city
+        tourLength += graph[currentCity][nearestNeighbor]; // Update tour length
+        currentCity = nearestNeighbor; // Move to nearest unvisited city
     }
 
-    for (int i = start; i < n; i++) {
-        swap(&cities[start], &cities[i]);
-        permute(cities, start + 1, n, minCost);
-        swap(&cities[start], &cities[i]);
-    }
+    tourLength += graph[currentCity][start]; // Return to starting city
+
+    return tourLength;
 }
 
 int main() {
-    int cities[N] = {0, 1, 2, 3}; // Assuming cities are numbered from 0 to N-1
-    
-    int minCost = __INT_MAX__;
-    permute(cities, 0, N, &minCost);
-    
-    printf("Minimum cost for TSP: %d\n", minCost);
-    
+    int startCity = 0; // Starting city index
+
+    int tourLength = tspNearestNeighbor(startCity);
+
+    printf("Shortest tour length using Nearest Neighbor Algorithm: %d\n", tourLength);
+
     return 0;
 }
