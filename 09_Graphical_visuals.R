@@ -6,22 +6,22 @@ values <- c(20, 30, 40, 50, 60)
 data <- data.frame(x, y)
 
 # Plot - Simple line plot
-#plot(x, y, type = "o", col = "blue", xlab = "X values", ylab = "Y values", main = "Line Plot")
+#plot(x, y, col = "blue", main = "Line ", xlab = "X values", ylab = "Y values")
 
 # Histogram - Distribution of values
-#hist(values, main = "Histogram", xlab = "Values", ylab = "Frequency", col = "green")
+#hist(values , main = "Histogram", xlab = "Values", ylab = "Frequency", col = "Pink")
 
 # Line chart - Plotting two variables
-#plot(data$x, data$y, type = "b", col = "red", xlab = "X values", ylab = "Y values", main = "Line Chart")
+#plot(x, y, type="b",col = "red", xlab = "X values", ylab = "Y values", main = "Line Chart")
 
 # Pie chart - Distribution of categories
-#pie(values, labels = categories, main = "Pie Chart")
+#pie(values, labels = categories, main = "PieChart")
 
 # Boxplot - Visualizing distribution and outliers
-#boxplot(y, main = "Boxplot", ylab = "Values")
+#boxplot(x, main = "Boxplot", ylab = "Values")
 
 # Scatterplot - Relationship between two variables
-plot(data$x, data$y, xlab = "X values", ylab = "Y values", main = "Scatterplot")
+#plot(data$x, data$y, xlab = "X values", ylab = "Y values", main = "Scatterplot")
 
 #Explanation:
 
