@@ -5,8 +5,14 @@ calculate_stats <- function(data) {
   cat("Mean:", mean_value, "\n")
   
   # Mode
-  mode_value <- names(sort(table(data), decreasing = TRUE))[1]
-  cat("Mode:", mode_value, "\n")
+  # Calculate frequencies of each value
+  freq <- table(data)
+
+# Find the value(s) with maximum frequency
+modes <- which(freq == max(freq))
+
+# Display the mode(s)
+cat("Mode(s):", modes, "\n")
   
   # Median
   median_value <- median(data)
