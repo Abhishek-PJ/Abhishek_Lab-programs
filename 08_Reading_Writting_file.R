@@ -1,12 +1,12 @@
 # Reading data from a CSV file
-data <- read.csv("input_data.csv")
+file_path <- "input_data.txt"
+file_content <- readLines(file_path,warn = FALSE)
 
 # Displaying the read data
-print("Data read from input_data.csv:")
-print(data)
+print("Data read succesfully")
+print(file_content)
 
-# Writing data to another CSV file
-write.csv(data, file = "output_data.csv")
-
-# Printing a message indicating successful writing
-print("Data successfully written to output_data.csv")
+data <- c("Hello ji")
+file_path <- "output_data.txt"
+writeLines(data, file_path)
+print("Data written succesfully")
