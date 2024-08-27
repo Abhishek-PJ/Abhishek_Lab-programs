@@ -1,4 +1,5 @@
-//Write a PHP program to implement simple calculator operations.
+//Write a PHP program to implement simple calculator operations. 
+//index.php
 <!DOCTYPE html>
 <html>
 <head>
